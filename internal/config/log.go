@@ -100,3 +100,11 @@ const (
 	// [EnvLogOutput] is unset.
 	DefaultLogOutput = LogOutputStdout
 )
+
+type (
+	Log interface {
+		Level() LogLevel
+		Format() LogFormat
+		Output() LogOutput
+	}
+)
