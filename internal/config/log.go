@@ -21,6 +21,11 @@ const (
 	LogLevelError LogLevel = "error"
 )
 
+const (
+	EnvLogLevel     = "LOG_LEVEL"
+	DefaultLogLevel = LogLevelInfo
+)
+
 type (
 	// LogFormat represents the encoding style of log records.
 	LogFormat string
@@ -34,6 +39,11 @@ const (
 	LogFormatJSON LogFormat = "json"
 )
 
+const (
+	EnvLogFormat     = "LOG_FORMAT"
+	DefaultLogFormat = LogFormatText
+)
+
 type (
 	// LogOutput represents the destination stream of log records.
 	LogOutput string
@@ -45,4 +55,9 @@ const (
 
 	// LogOutputStderr writes log records to the standard error stream (stderr).
 	LogOutputStderr LogOutput = "stderr"
+)
+
+const (
+	EnvLogOutput     = "LOG_OUTPUT"
+	DefaultLogOutput = LogOutputStdout
 )
