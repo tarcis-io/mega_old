@@ -22,7 +22,21 @@ const (
 )
 
 const (
-	EnvLogLevel     = "LOG_LEVEL"
+	// EnvLogLevel specifies the environment variable name for configuring the
+	// [LogLevel].
+	//
+	// Expected values:
+	//
+	//  - [LogLevelDebug]
+	//  - [LogLevelInfo]
+	//  - [LogLevelWarn]
+	//  - [LogLevelError]
+	//
+	// Default: [DefaultLogLevel]
+	EnvLogLevel = "LOG_LEVEL"
+
+	// DefaultLogLevel specifies the default [LogLevel], used as the fallback when
+	// [EnvLogLevel] is unset.
 	DefaultLogLevel = LogLevelInfo
 )
 
@@ -40,7 +54,19 @@ const (
 )
 
 const (
-	EnvLogFormat     = "LOG_FORMAT"
+	// EnvLogFormat specifies the environment variable name for configuring the
+	// [LogFormat].
+	//
+	// Expected values:
+	//
+	//  - [LogFormatText]
+	//  - [LogFormatJSON]
+	//
+	// Default: [DefaultLogFormat]
+	EnvLogFormat = "LOG_FORMAT"
+
+	// DefaultLogFormat specifies the default [LogFormat], used as the fallback when
+	// [EnvLogFormat] is unset.
 	DefaultLogFormat = LogFormatText
 )
 
@@ -58,6 +84,19 @@ const (
 )
 
 const (
-	EnvLogOutput     = "LOG_OUTPUT"
+	// EnvLogOutput specifies the environment variable name for configuring the
+	// [LogOutput].
+	//
+	// Expected values:
+	//
+	//  - [LogOutputStdout]
+	//  - [LogOutputStderr]
+	//  - A custom string (typically a file path)
+	//
+	// Default: [DefaultLogOutput]
+	EnvLogOutput = "LOG_OUTPUT"
+
+	// DefaultLogOutput specifies the default [LogOutput], used as the fallback when
+	// [EnvLogOutput] is unset.
 	DefaultLogOutput = LogOutputStdout
 )
