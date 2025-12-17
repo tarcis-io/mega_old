@@ -6,9 +6,18 @@ type (
 )
 
 const (
+	// LogLevelDebug captures detailed information, typically useful for development
+	// and debugging.
 	LogLevelDebug LogLevel = "debug"
-	LogLevelInfo  LogLevel = "info"
-	LogLevelWarn  LogLevel = "warn"
+
+	// LogLevelInfo captures general information about the application's operation.
+	LogLevelInfo LogLevel = "info"
+
+	// LogLevelWarn captures non-critical events or potentially harmful situations.
+	LogLevelWarn LogLevel = "warn"
+
+	// LogLevelError captures critical events or errors that require immediate
+	// attention.
 	LogLevelError LogLevel = "error"
 )
 
@@ -18,7 +27,10 @@ type (
 )
 
 const (
+	// LogFormatText renders log records as human-readable text.
 	LogFormatText LogFormat = "text"
+
+	// LogFormatJSON renders log records as structured JSON objects.
 	LogFormatJSON LogFormat = "json"
 )
 
@@ -28,6 +40,9 @@ type (
 )
 
 const (
+	// LogOutputStdout writes log records to the standard output stream (stdout).
 	LogOutputStdout LogOutput = "stdout"
+
+	// LogOutputStderr writes log records to the standard error stream (stderr).
 	LogOutputStderr LogOutput = "stderr"
 )
