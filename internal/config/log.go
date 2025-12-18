@@ -114,3 +114,31 @@ type (
 		Output() LogOutput
 	}
 )
+
+type (
+	log struct {
+		level  LogLevel
+		format LogFormat
+		output LogOutput
+	}
+)
+
+func newLog(level LogLevel, format LogFormat, output LogOutput) *log {
+	return &log{
+		level:  level,
+		format: format,
+		output: output,
+	}
+}
+
+func (l *log) Level() LogLevel {
+	return l.level
+}
+
+func (l *log) Format() LogFormat {
+	return l.format
+}
+
+func (l *log) Output() LogOutput {
+	return l.output
+}
