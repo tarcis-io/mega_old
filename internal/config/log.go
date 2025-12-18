@@ -36,7 +36,7 @@ const (
 	EnvLogLevel = "LOG_LEVEL"
 
 	// DefaultLogLevel specifies the default [LogLevel], used as the fallback when
-	// [EnvLogLevel] is unset.
+	// [EnvLogLevel] is unset or contains an invalid value.
 	DefaultLogLevel = LogLevelInfo
 )
 
@@ -66,7 +66,7 @@ const (
 	EnvLogFormat = "LOG_FORMAT"
 
 	// DefaultLogFormat specifies the default [LogFormat], used as the fallback when
-	// [EnvLogFormat] is unset.
+	// [EnvLogFormat] is unset or contains an invalid value.
 	DefaultLogFormat = LogFormatText
 )
 
@@ -97,7 +97,7 @@ const (
 	EnvLogOutput = "LOG_OUTPUT"
 
 	// DefaultLogOutput specifies the default [LogOutput], used as the fallback when
-	// [EnvLogOutput] is unset.
+	// [EnvLogOutput] is unset or contains an invalid value.
 	DefaultLogOutput = LogOutputStdout
 )
 
