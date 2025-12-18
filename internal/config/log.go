@@ -102,9 +102,15 @@ const (
 )
 
 type (
+	// Log defines the application configuration for logging.
 	Log interface {
+		// Level returns the configured [LogLevel].
 		Level() LogLevel
+
+		// Format returns the configured [LogFormat].
 		Format() LogFormat
+
+		// Output returns the configured [LogOutput].
 		Output() LogOutput
 	}
 )
