@@ -102,7 +102,7 @@ const (
 )
 
 type (
-	// Log defines the application configuration for logging.
+	// Log defines the immutable application configuration for logging.
 	Log interface {
 		// Level returns the configured [LogLevel].
 		Level() LogLevel
