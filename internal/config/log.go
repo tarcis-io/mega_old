@@ -104,13 +104,13 @@ const (
 type (
 	// Log defines the immutable application configuration for logging.
 	Log interface {
-		// Level returns the configured [LogLevel].
+		// Level returns the configured severity of log records.
 		Level() LogLevel
 
-		// Format returns the configured [LogFormat].
+		// Format returns the configured encoding style of log records.
 		Format() LogFormat
 
-		// Output returns the configured [LogOutput].
+		// Output returns the configured destination stream of log records.
 		Output() LogOutput
 	}
 )
