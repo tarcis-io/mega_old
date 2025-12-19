@@ -32,7 +32,7 @@ const (
 	//  - [LogLevelWarn]
 	//  - [LogLevelError]
 	//
-	// Default: [DefaultLogLevel]
+	// Default: [DefaultLogLevel].
 	EnvLogLevel = "LOG_LEVEL"
 
 	// DefaultLogLevel specifies the default [LogLevel], used as the fallback when
@@ -62,7 +62,7 @@ const (
 	//  - [LogFormatText]
 	//  - [LogFormatJSON]
 	//
-	// Default: [DefaultLogFormat]
+	// Default: [DefaultLogFormat].
 	EnvLogFormat = "LOG_FORMAT"
 
 	// DefaultLogFormat specifies the default [LogFormat], used as the fallback when
@@ -91,9 +91,9 @@ const (
 	//
 	//  - [LogOutputStdout]
 	//  - [LogOutputStderr]
-	//  - A custom string (typically a file path)
+	//  - A custom string (typically a file path).
 	//
-	// Default: [DefaultLogOutput]
+	// Default: [DefaultLogOutput].
 	EnvLogOutput = "LOG_OUTPUT"
 
 	// DefaultLogOutput specifies the default [LogOutput], used as the fallback when

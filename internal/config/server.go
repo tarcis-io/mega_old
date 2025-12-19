@@ -8,7 +8,7 @@ type (
 	// Server defines the immutable application configuration for the server.
 	Server interface {
 		// Address returns the configured TCP address for the server to listen on, in the
-		// form "host:port".
+		// form of "host:port".
 		Address() string
 
 		// ReadTimeout returns the configured maximum duration for reading the entire
