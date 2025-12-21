@@ -4,6 +4,36 @@ import (
 	"time"
 )
 
+const (
+	EnvServerAddress     = "SERVER_ADDRESS"
+	DefaultServerAddress = "localhost:8080"
+)
+
+const (
+	EnvServerReadTimeout     = "SERVER_READ_TIMEOUT"
+	DefaultServerReadTimeout = 5 * time.Second
+)
+
+const (
+	EnvServerReadHeaderTimeout     = "SERVER_READ_HEADER_TIMEOUT"
+	DefaultServerReadHeaderTimeout = 5 * time.Second
+)
+
+const (
+	EnvServerWriteTimeout     = "SERVER_WRITE_TIMEOUT"
+	DefaultServerWriteTimeout = 5 * time.Second
+)
+
+const (
+	EnvServerIdleTimeout     = "SERVER_IDLE_TIMEOUT"
+	DefaultServerIdleTimeout = 5 * time.Second
+)
+
+const (
+	EnvServerShutdownTimeout     = "SERVER_SHUTDOWN_TIMEOUT"
+	DefaultServerShutdownTimeout = 5 * time.Second
+)
+
 type (
 	// Server defines the immutable application configuration for the server.
 	Server interface {
