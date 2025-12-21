@@ -118,3 +118,49 @@ type (
 		ShutdownTimeout() time.Duration
 	}
 )
+
+type (
+	server struct {
+		address           string
+		readTimeout       time.Duration
+		readHeaderTimeout time.Duration
+		writeTimeout      time.Duration
+		idleTimeout       time.Duration
+		shutdownTimeout   time.Duration
+	}
+)
+
+func newServer(address string, readTimeout, readHeaderTimeout, writeTimeout, idleTimeout, shutdownTimeout time.Duration) *server {
+	return &server{
+		address:           address,
+		readTimeout:       readTimeout,
+		readHeaderTimeout: readHeaderTimeout,
+		writeTimeout:      writeTimeout,
+		idleTimeout:       idleTimeout,
+		shutdownTimeout:   shutdownTimeout,
+	}
+}
+
+func (s *server) Address() string {
+	return s.address
+}
+
+func (s *server) ReadTimeout() time.Duration {
+	return s.readTimeout
+}
+
+func (s *server) ReadHeaderTimeout() time.Duration {
+	return s.readHeaderTimeout
+}
+
+func (s *server) WriteTimeout() time.Duration {
+	return s.writeTimeout
+}
+
+func (s *server) IdleTimeout() time.Duration {
+	return s.idleTimeout
+}
+
+func (s *server) ShutdownTimeout() time.Duration {
+	return s.shutdownTimeout
+}
