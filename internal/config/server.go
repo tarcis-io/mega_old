@@ -5,32 +5,88 @@ import (
 )
 
 const (
-	EnvServerAddress     = "SERVER_ADDRESS"
+	// EnvServerAddress specifies the environment variable name for configuring the
+	// server address.
+	//
+	// Expected format: "<host>:port" (e.g., "localhost:8080", ":3030").
+	//
+	// Default: [DefaultServerAddress].
+	EnvServerAddress = "SERVER_ADDRESS"
+
+	// DefaultServerAddress specifies the default server address, used as the fallback
+	// when [EnvServerAddress] is unset or contains an invalid value.
 	DefaultServerAddress = "localhost:8080"
 )
 
 const (
-	EnvServerReadTimeout     = "SERVER_READ_TIMEOUT"
+	// EnvServerReadTimeout specifies the environment variable name for configuring the
+	// server read timeout.
+	//
+	// Expected format: [time.Duration] (e.g., "5s", "1m").
+	//
+	// Default: [DefaultServerReadTimeout].
+	EnvServerReadTimeout = "SERVER_READ_TIMEOUT"
+
+	// DefaultServerReadTimeout specifies the default server read timeout, used as the
+	// fallback when [EnvServerReadTimeout] is unset or contains an invalid value.
 	DefaultServerReadTimeout = 5 * time.Second
 )
 
 const (
-	EnvServerReadHeaderTimeout     = "SERVER_READ_HEADER_TIMEOUT"
+	// EnvServerReadHeaderTimeout specifies the environment variable name for
+	// configuring the server read header timeout.
+	//
+	// Expected format: [time.Duration] (e.g., "5s", "1m").
+	//
+	// Default: [DefaultServerReadHeaderTimeout].
+	EnvServerReadHeaderTimeout = "SERVER_READ_HEADER_TIMEOUT"
+
+	// DefaultServerReadHeaderTimeout specifies the default server read header timeout,
+	// used as the fallback when [EnvServerReadHeaderTimeout] is unset or contains an
+	// invalid value.
 	DefaultServerReadHeaderTimeout = 5 * time.Second
 )
 
 const (
-	EnvServerWriteTimeout     = "SERVER_WRITE_TIMEOUT"
+	// EnvServerWriteTimeout specifies the environment variable name for configuring
+	// the server write timeout.
+	//
+	// Expected format: [time.Duration] (e.g., "5s", "1m").
+	//
+	// Default: [DefaultServerWriteTimeout].
+	EnvServerWriteTimeout = "SERVER_WRITE_TIMEOUT"
+
+	// DefaultServerWriteTimeout specifies the default server write timeout, used as
+	// the fallback when [EnvServerWriteTimeout] is unset or contains an invalid value.
 	DefaultServerWriteTimeout = 5 * time.Second
 )
 
 const (
-	EnvServerIdleTimeout     = "SERVER_IDLE_TIMEOUT"
+	// EnvServerIdleTimeout specifies the environment variable name for configuring the
+	// server idle timeout.
+	//
+	// Expected format: [time.Duration] (e.g., "5s", "1m").
+	//
+	// Default: [DefaultServerIdleTimeout].
+	EnvServerIdleTimeout = "SERVER_IDLE_TIMEOUT"
+
+	// DefaultServerIdleTimeout specifies the default server idle timeout, used as the
+	// fallback when [EnvServerIdleTimeout] is unset or contains an invalid value.
 	DefaultServerIdleTimeout = 5 * time.Second
 )
 
 const (
-	EnvServerShutdownTimeout     = "SERVER_SHUTDOWN_TIMEOUT"
+	// EnvServerShutdownTimeout specifies the environment variable name for configuring
+	// the server shutdown timeout.
+	//
+	// Expected format: [time.Duration] (e.g., "5s", "1m").
+	//
+	// Default: [DefaultServerShutdownTimeout].
+	EnvServerShutdownTimeout = "SERVER_SHUTDOWN_TIMEOUT"
+
+	// DefaultServerShutdownTimeout specifies the default server shutdown timeout, used
+	// as the fallback when [EnvServerShutdownTimeout] is unset or contains an invalid
+	// value.
 	DefaultServerShutdownTimeout = 5 * time.Second
 )
 
