@@ -44,7 +44,7 @@ const (
 	// DefaultServerReadHeaderTimeout specifies the default server read header timeout,
 	// used as the fallback when [EnvServerReadHeaderTimeout] is unset or contains an
 	// invalid value.
-	DefaultServerReadHeaderTimeout = 5 * time.Second
+	DefaultServerReadHeaderTimeout = 2 * time.Second
 )
 
 const (
@@ -58,7 +58,7 @@ const (
 
 	// DefaultServerWriteTimeout specifies the default server write timeout, used as
 	// the fallback when [EnvServerWriteTimeout] is unset or contains an invalid value.
-	DefaultServerWriteTimeout = 5 * time.Second
+	DefaultServerWriteTimeout = 10 * time.Second
 )
 
 const (
@@ -72,7 +72,7 @@ const (
 
 	// DefaultServerIdleTimeout specifies the default server idle timeout, used as the
 	// fallback when [EnvServerIdleTimeout] is unset or contains an invalid value.
-	DefaultServerIdleTimeout = 5 * time.Second
+	DefaultServerIdleTimeout = 60 * time.Second
 )
 
 const (
@@ -87,7 +87,7 @@ const (
 	// DefaultServerShutdownTimeout specifies the default server shutdown timeout, used
 	// as the fallback when [EnvServerShutdownTimeout] is unset or contains an invalid
 	// value.
-	DefaultServerShutdownTimeout = 5 * time.Second
+	DefaultServerShutdownTimeout = 15 * time.Second
 )
 
 type (
