@@ -13,13 +13,3 @@ type (
 		Server() Server
 	}
 )
-
-type (
-	loader struct {
-		errs []error
-	}
-)
-
-func newLoader() *loader {
-	return &loader{}
-}
