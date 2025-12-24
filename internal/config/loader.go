@@ -61,3 +61,17 @@ func (l *loader) addErrorf(format string, args ...any) {
 func (l *loader) err() error {
 	return errors.Join(l.errs...)
 }
+
+func oneOf[T ~string](l *loader, envKey string, fallback T, allowed ...T) T {
+	s := l.env(envKey)
+	if s == "" {
+		return fallback
+	}
+	for _, a := range allowed {
+		if strings.EqualFold(s, string(a)) {
+			return a
+		}
+	}
+	l.addErrorf("invalid configuration (%s) got=%q", envKey, s)
+	return fallback
+}
