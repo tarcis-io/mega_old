@@ -9,6 +9,11 @@ import (
 type (
 	lookupFunc func(string) string
 
+	// loader is a helper for loading environment variables into application
+	// configuration.
+	//
+	// It aggregates errors internally so that all loading issues can be reported at
+	// once, rather than failing on the first error.
 	loader struct {
 		lookup lookupFunc
 		errs   []error
