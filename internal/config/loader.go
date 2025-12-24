@@ -22,6 +22,9 @@ func newLoader(lookup lookupFunc) *loader {
 }
 
 func (l *loader) env(key string) string {
+	if l.lookup == nil {
+		return ""
+	}
 	return strings.TrimSpace(l.lookup(key))
 }
 
