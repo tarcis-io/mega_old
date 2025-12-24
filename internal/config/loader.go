@@ -58,7 +58,7 @@ func (l *loader) addErrorf(format string, args ...any) {
 	l.addError(fmt.Errorf(format, args...))
 }
 
-func (l *loader) err() error {
+func (l *loader) Err() error {
 	return errors.Join(l.errs...)
 }
 
