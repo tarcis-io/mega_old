@@ -130,24 +130,6 @@ type (
 	}
 )
 
-func newServer(
-	address string,
-	readTimeout,
-	readHeaderTimeout,
-	writeTimeout,
-	idleTimeout,
-	shutdownTimeout time.Duration,
-) *server {
-	return &server{
-		address:           address,
-		readTimeout:       readTimeout,
-		readHeaderTimeout: readHeaderTimeout,
-		writeTimeout:      writeTimeout,
-		idleTimeout:       idleTimeout,
-		shutdownTimeout:   shutdownTimeout,
-	}
-}
-
 func (s *server) Address() string {
 	return s.address
 }

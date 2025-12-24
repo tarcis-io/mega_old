@@ -123,14 +123,6 @@ type (
 	}
 )
 
-func newLog(level LogLevel, format LogFormat, output LogOutput) *log {
-	return &log{
-		level:  level,
-		format: format,
-		output: output,
-	}
-}
-
 func (l *log) Level() LogLevel {
 	return l.level
 }
