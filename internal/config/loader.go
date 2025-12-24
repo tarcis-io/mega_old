@@ -4,6 +4,7 @@ import (
 	"errors"
 	"fmt"
 	"strings"
+	"time"
 )
 
 type (
@@ -24,6 +25,19 @@ func newLoader(lookup lookupFunc) *loader {
 	return &loader{
 		lookup: lookup,
 	}
+}
+
+func (l *loader) duration(envKey string, fallback time.Duration) time.Duration {
+	s := l.env(envKey)
+	if s == "" {
+		return fallback
+	}
+	d, err := time.ParseDuration(s)
+	if err != nil {
+		l.addErrorf("invalid configuration (%s) got=%q: %w", envKey, s, err)
+		return fallback
+	}
+	return d
 }
 
 func (l *loader) env(key string) string {
