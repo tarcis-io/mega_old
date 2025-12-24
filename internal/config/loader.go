@@ -6,13 +6,18 @@ import (
 )
 
 type (
+	lookupFunc func(string) string
+
 	loader struct {
-		errs []error
+		lookup lookupFunc
+		errs   []error
 	}
 )
 
-func newLoader() *loader {
-	return &loader{}
+func newLoader(lookup lookupFunc) *loader {
+	return &loader{
+		lookup: lookup,
+	}
 }
 
 func (l *loader) addError(err error) {
