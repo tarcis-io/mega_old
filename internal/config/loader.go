@@ -3,6 +3,7 @@ package config
 import (
 	"errors"
 	"fmt"
+	"strings"
 )
 
 type (
@@ -18,6 +19,10 @@ func newLoader(lookup lookupFunc) *loader {
 	return &loader{
 		lookup: lookup,
 	}
+}
+
+func (l *loader) env(key string) string {
+	return strings.TrimSpace(l.lookup(key))
 }
 
 func (l *loader) addError(err error) {
