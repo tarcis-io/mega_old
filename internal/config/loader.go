@@ -31,7 +31,7 @@ func newLoader(lookup lookupFunc) *loader {
 func (l *loader) positiveDuration(envKey string, fallback time.Duration) time.Duration {
 	d := l.duration(envKey, fallback)
 	if d <= 0 {
-		l.addErrorf("invalid configuration: env=%s got=%q err=must be positive", envKey, d)
+		l.addErrorf("invalid configuration: env=%s got='%s' err=must be positive", envKey, d)
 		return fallback
 	}
 	return d
@@ -87,6 +87,6 @@ func oneOf[T ~string](l *loader, envKey string, fallback T, allowed ...T) T {
 	for _, a := range allowed {
 		allowedStr = append(allowedStr, string(a))
 	}
-	l.addErrorf("invalid configuration: env=%s got=%q allowed=%v", envKey, s, strings.Join(allowedStr, ", "))
+	l.addErrorf("invalid configuration: env=%s got=%q allowed=[%s]", envKey, s, strings.Join(allowedStr, ", "))
 	return fallback
 }
