@@ -30,8 +30,17 @@ func newLoader(lookup lookupFunc) *loader {
 
 func (l *loader) positiveDuration(envKey string, fallback time.Duration) time.Duration {
 	d := l.duration(envKey, fallback)
-	if d < 0 {
+	if d <= 0 {
 		l.addErrorf("invalid configuration: env=%q got=%q err=\"duration must be positive\"", envKey, d.String())
+		return fallback
+	}
+	return d
+}
+
+func (l *loader) nonNegativeDuration(envKey string, fallback time.Duration) time.Duration {
+	d := l.duration(envKey, fallback)
+	if d < 0 {
+		l.addErrorf("invalid configuration: env=%q got=%q err=\"duration must be non-negative\"", envKey, d.String())
 		return fallback
 	}
 	return d
