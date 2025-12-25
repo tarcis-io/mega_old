@@ -93,8 +93,8 @@ func oneOf[T ~string](l *loader, envKey string, fallback T, allowed ...T) T {
 		return allowed[idx]
 	}
 	allowedStr := make([]string, 0, len(allowed))
-	for _, a := range allowed {
-		allowedStr = append(allowedStr, string(a))
+	for i, a := range allowed {
+		allowedStr[i] = string(a)
 	}
 	l.addErrorf("invalid configuration: env=%q got=%q allowed=[%s]", envKey, s, strings.Join(allowedStr, ", "))
 	return fallback
