@@ -92,7 +92,7 @@ func oneOf[T ~string](l *loader, envKey string, fallback T, allowed ...T) T {
 	if idx >= 0 {
 		return allowed[idx]
 	}
-	allowedStr := make([]string, 0, len(allowed))
+	allowedStr := make([]string, len(allowed))
 	for i, a := range allowed {
 		allowedStr[i] = string(a)
 	}
