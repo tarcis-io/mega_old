@@ -78,6 +78,6 @@ func oneOf[T ~string](l *loader, envKey string, fallback T, allowed ...T) T {
 	for _, a := range allowed {
 		allowedStr = append(allowedStr, string(a))
 	}
-	l.addErrorf("invalid configuration: env=%s got=%q allowed=%v", envKey, s, allowedStr)
+	l.addErrorf("invalid configuration: env=%s got=%q allowed=%v", envKey, s, strings.Join(allowedStr, ", "))
 	return fallback
 }
