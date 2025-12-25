@@ -3,6 +3,7 @@ package config
 import (
 	"errors"
 	"fmt"
+	"slices"
 	"strings"
 	"time"
 )
@@ -67,10 +68,11 @@ func oneOf[T ~string](l *loader, envKey string, fallback T, allowed ...T) T {
 	if s == "" {
 		return fallback
 	}
-	for _, a := range allowed {
-		if strings.EqualFold(s, string(a)) {
-			return a
-		}
+	idx := slices.IndexFunc(allowed, func(a T) bool {
+		return strings.EqualFold(s, string(a))
+	})
+	if idx >= 0 {
+		return allowed[idx]
 	}
 	allowedStr := make([]string, 0, len(allowed))
 	for _, a := range allowed {
