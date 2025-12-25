@@ -34,7 +34,7 @@ func (l *loader) duration(envKey string, fallback time.Duration) time.Duration {
 	}
 	d, err := time.ParseDuration(s)
 	if err != nil {
-		l.addErrorf("invalid configuration (%s) got=%q: %w", envKey, s, err)
+		l.addErrorf("invalid configuration: env=%s got=%q err=%w", envKey, s, err)
 		return fallback
 	}
 	return d
@@ -76,6 +76,6 @@ func oneOf[T ~string](l *loader, envKey string, fallback T, allowed ...T) T {
 	for _, a := range allowed {
 		allowedStr = append(allowedStr, string(a))
 	}
-	l.addErrorf("invalid configuration (%s) got=%q allowed=%v", envKey, s, allowedStr)
+	l.addErrorf("invalid configuration: env=%s got=%q allowed=%v", envKey, s, allowedStr)
 	return fallback
 }
