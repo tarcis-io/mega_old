@@ -21,25 +21,6 @@ const (
 	LogLevelError LogLevel = "error"
 )
 
-const (
-	// EnvLogLevel specifies the environment variable name for configuring the
-	// [LogLevel].
-	//
-	// Expected values:
-	//
-	//  - [LogLevelDebug]
-	//  - [LogLevelInfo]
-	//  - [LogLevelWarn]
-	//  - [LogLevelError]
-	//
-	// Default: [DefaultLogLevel].
-	EnvLogLevel = "LOG_LEVEL"
-
-	// DefaultLogLevel specifies the default [LogLevel], used as the fallback when
-	// [EnvLogLevel] is unset or contains an invalid value.
-	DefaultLogLevel = LogLevelInfo
-)
-
 type (
 	// LogFormat represents the encoding style of log records.
 	LogFormat string
@@ -53,23 +34,6 @@ const (
 	LogFormatJSON LogFormat = "json"
 )
 
-const (
-	// EnvLogFormat specifies the environment variable name for configuring the
-	// [LogFormat].
-	//
-	// Expected values:
-	//
-	//  - [LogFormatText]
-	//  - [LogFormatJSON]
-	//
-	// Default: [DefaultLogFormat].
-	EnvLogFormat = "LOG_FORMAT"
-
-	// DefaultLogFormat specifies the default [LogFormat], used as the fallback when
-	// [EnvLogFormat] is unset or contains an invalid value.
-	DefaultLogFormat = LogFormatText
-)
-
 type (
 	// LogOutput represents the destination stream of log records.
 	LogOutput string
@@ -81,24 +45,6 @@ const (
 
 	// LogOutputStderr writes log records to the standard error stream (stderr).
 	LogOutputStderr LogOutput = "stderr"
-)
-
-const (
-	// EnvLogOutput specifies the environment variable name for configuring the
-	// [LogOutput].
-	//
-	// Expected values:
-	//
-	//  - [LogOutputStdout]
-	//  - [LogOutputStderr]
-	//  - A custom string (typically a file path).
-	//
-	// Default: [DefaultLogOutput].
-	EnvLogOutput = "LOG_OUTPUT"
-
-	// DefaultLogOutput specifies the default [LogOutput], used as the fallback when
-	// [EnvLogOutput] is unset or contains an invalid value.
-	DefaultLogOutput = LogOutputStdout
 )
 
 type (
