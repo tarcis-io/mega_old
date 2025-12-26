@@ -61,6 +61,17 @@ type (
 	}
 )
 
+const (
+	envLogLevel     = "LOG_LEVEL"
+	defaultLogLevel = LogLevelInfo
+
+	envLogFormat     = "LOG_FORMAT"
+	defaultLogFormat = LogFormatText
+
+	envLogOutput     = "LOG_OUTPUT"
+	defaultLogOutput = LogOutputStdout
+)
+
 type (
 	log struct {
 		level  LogLevel
