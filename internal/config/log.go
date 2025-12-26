@@ -77,7 +77,7 @@ type Log interface {
 	//
 	//  - [LogOutputStdout]
 	//  - [LogOutputStderr]
-	//  - A custom value (typically a file path or a log URL server)
+	//  - A custom value (typically a file path or a log server URL)
 	//
 	// Default value: [LogOutputStdout]
 	Output() LogOutput
