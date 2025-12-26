@@ -143,8 +143,8 @@ func loadLogFormat(l *loader) LogFormat {
 }
 
 func loadLogOutput(l *loader) LogOutput {
-	s := l.env(envLogOutput)
-	if s == "" {
+	s, ok := l.get(envLogOutput)
+	if !ok || s == "" {
 		return defaultLogOutput
 	}
 	if val, ok := match(s, LogOutputStdout, LogOutputStderr); ok {

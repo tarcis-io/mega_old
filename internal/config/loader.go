@@ -9,16 +9,11 @@ import (
 )
 
 type (
-	lookupFunc func(string) string
+	provider func(string) (string, bool)
 
-	// loader is a helper for loading environment variables into application
-	// configuration.
-	//
-	// It aggregates errors internally so that all loading issues can be reported at
-	// once, rather than failing on the first error.
 	loader struct {
-		lookup lookupFunc
-		errs   []error
+		provider provider
+		errs     []error
 	}
 )
 
@@ -41,8 +36,8 @@ func (l *loader) nonNegativeDuration(envKey string, fallback time.Duration) time
 }
 
 func (l *loader) duration(envKey string, fallback time.Duration) time.Duration {
-	s := l.env(envKey)
-	if s == "" {
+	s, ok := l.get(envKey)
+	if !ok || s == "" {
 		return fallback
 	}
 	d, err := time.ParseDuration(s)
@@ -53,11 +48,15 @@ func (l *loader) duration(envKey string, fallback time.Duration) time.Duration {
 	return d
 }
 
-func (l *loader) env(key string) string {
-	if l.lookup == nil {
-		return ""
+func (l *loader) get(key string) (string, bool) {
+	if l.provider == nil {
+		return "", false
 	}
-	return strings.TrimSpace(l.lookup(key))
+	val, ok := l.provider(key)
+	if !ok {
+		return "", false
+	}
+	return strings.TrimSpace(val), true
 }
 
 func (l *loader) addError(err error) {
@@ -76,8 +75,8 @@ func (l *loader) Err() error {
 }
 
 func oneOf[T ~string](l *loader, envKey string, fallback T, allowed ...T) T {
-	s := l.env(envKey)
-	if s == "" {
+	s, ok := l.get(envKey)
+	if !ok || s == "" {
 		return fallback
 	}
 	if val, ok := match(s, allowed...); ok {
