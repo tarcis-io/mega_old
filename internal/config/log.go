@@ -111,3 +111,44 @@ func (l *log) Format() LogFormat {
 func (l *log) Output() LogOutput {
 	return l.output
 }
+
+func loadLog(l *loader) *log {
+	return &log{
+		level:  loadLogLevel(l),
+		format: loadLogFormat(l),
+		output: loadLogOutput(l),
+	}
+}
+
+func loadLogLevel(l *loader) LogLevel {
+	return oneOf(
+		l,
+		envLogLevel,
+		defaultLogLevel,
+		LogLevelDebug,
+		LogLevelInfo,
+		LogLevelWarn,
+		LogLevelError,
+	)
+}
+
+func loadLogFormat(l *loader) LogFormat {
+	return oneOf(
+		l,
+		envLogFormat,
+		defaultLogFormat,
+		LogFormatText,
+		LogFormatJSON,
+	)
+}
+
+func loadLogOutput(l *loader) LogOutput {
+	s := l.env(envLogOutput)
+	if s == "" {
+		return defaultLogOutput
+	}
+	if val, ok := match(s, LogOutputStdout, LogOutputStderr); ok {
+		return val
+	}
+	return LogOutput(s)
+}
