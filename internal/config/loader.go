@@ -86,11 +86,8 @@ func oneOf[T ~string](l *loader, envKey string, fallback T, allowed ...T) T {
 	if s == "" {
 		return fallback
 	}
-	idx := slices.IndexFunc(allowed, func(a T) bool {
-		return strings.EqualFold(s, string(a))
-	})
-	if idx >= 0 {
-		return allowed[idx]
+	if val, ok := match(s, allowed...); ok {
+		return val
 	}
 	allowedStr := make([]string, len(allowed))
 	for i, a := range allowed {
@@ -98,4 +95,15 @@ func oneOf[T ~string](l *loader, envKey string, fallback T, allowed ...T) T {
 	}
 	l.addErrorf("invalid configuration: env=%q got=%q allowed=[%s]", envKey, s, strings.Join(allowedStr, ", "))
 	return fallback
+}
+
+func match[T ~string](s string, allowed ...T) (T, bool) {
+	idx := slices.IndexFunc(allowed, func(a T) bool {
+		return strings.EqualFold(s, string(a))
+	})
+	if idx >= 0 {
+		return allowed[idx], true
+	}
+	var zero T
+	return zero, false
 }
