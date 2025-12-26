@@ -44,12 +44,41 @@ const (
 // Log defines the immutable application configuration for logging.
 type Log interface {
 	// Level returns the configured severity of log records.
+	//
+	// Environment variable: "LOG_LEVEL"
+	//
+	// Accepted values:
+	//
+	//  - [LogLevelDebug]
+	//  - [LogLevelInfo]
+	//  - [LogLevelWarn]
+	//  - [LogLevelError]
+	//
+	// Default value: [LogLevelInfo]
 	Level() LogLevel
 
 	// Format returns the configured encoding style of log records.
+	//
+	// Environment variable: "LOG_FORMAT"
+	//
+	// Accepted values:
+	//
+	//  - [LogFormatText]
+	//  - [LogFormatJSON]
+	//
+	// Default value: [LogFormatText]
 	Format() LogFormat
 
 	// Output returns the configured destination stream of log records.
+	//
+	// Environment variable: "LOG_OUTPUT"
+	//
+	// Accepted values:
+	//
+	//  - [LogOutputStdout]
+	//  - [LogOutputStderr]
+	//
+	// Default value: [LogOutputStdout]
 	Output() LogOutput
 }
 
