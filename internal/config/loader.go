@@ -25,7 +25,7 @@ type (
 func (l *loader) positiveDuration(envKey string, fallback time.Duration) time.Duration {
 	d := l.duration(envKey, fallback)
 	if d <= 0 {
-		l.addErrorf("invalid configuration: env=%q got=%q err=\"duration must be positive\"", envKey, d.String())
+		l.addErrorf("invalid configuration: env=%q value=%q err=\"duration must be positive\"", envKey, d.String())
 		return fallback
 	}
 	return d
@@ -34,7 +34,7 @@ func (l *loader) positiveDuration(envKey string, fallback time.Duration) time.Du
 func (l *loader) nonNegativeDuration(envKey string, fallback time.Duration) time.Duration {
 	d := l.duration(envKey, fallback)
 	if d < 0 {
-		l.addErrorf("invalid configuration: env=%q got=%q err=\"duration must be non-negative\"", envKey, d.String())
+		l.addErrorf("invalid configuration: env=%q value=%q err=\"duration must be non-negative\"", envKey, d.String())
 		return fallback
 	}
 	return d
@@ -47,7 +47,7 @@ func (l *loader) duration(envKey string, fallback time.Duration) time.Duration {
 	}
 	d, err := time.ParseDuration(s)
 	if err != nil {
-		l.addErrorf("invalid configuration: env=%q got=%q err=\"%w\"", envKey, s, err)
+		l.addErrorf("invalid configuration: env=%q value=%q err=\"%w\"", envKey, s, err)
 		return fallback
 	}
 	return d
@@ -87,7 +87,7 @@ func oneOf[T ~string](l *loader, envKey string, fallback T, allowed ...T) T {
 	for i, a := range allowed {
 		allowedStr[i] = string(a)
 	}
-	l.addErrorf("invalid configuration: env=%q got=%q allowed=[%s]", envKey, s, strings.Join(allowedStr, ", "))
+	l.addErrorf("invalid configuration: env=%q value=%q allowed=[%s]", envKey, s, strings.Join(allowedStr, ", "))
 	return fallback
 }
 
