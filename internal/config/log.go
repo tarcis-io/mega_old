@@ -1,9 +1,7 @@
 package config
 
-type (
-	// LogLevel represents the severity of log records.
-	LogLevel string
-)
+// LogLevel represents the severity of log records.
+type LogLevel string
 
 const (
 	// LogLevelDebug captures detailed information, typically useful for development
@@ -21,10 +19,8 @@ const (
 	LogLevelError LogLevel = "error"
 )
 
-type (
-	// LogFormat represents the encoding style of log records.
-	LogFormat string
-)
+// LogFormat represents the encoding style of log records.
+type LogFormat string
 
 const (
 	// LogFormatText renders log records as human-readable text.
@@ -34,10 +30,8 @@ const (
 	LogFormatJSON LogFormat = "json"
 )
 
-type (
-	// LogOutput represents the destination stream of log records.
-	LogOutput string
-)
+// LogOutput represents the destination stream of log records.
+type LogOutput string
 
 const (
 	// LogOutputStdout writes log records to the standard output stream (stdout).
@@ -47,19 +41,17 @@ const (
 	LogOutputStderr LogOutput = "stderr"
 )
 
-type (
-	// Log defines the immutable application configuration for logging.
-	Log interface {
-		// Level returns the configured severity of log records.
-		Level() LogLevel
+// Log defines the immutable application configuration for logging.
+type Log interface {
+	// Level returns the configured severity of log records.
+	Level() LogLevel
 
-		// Format returns the configured encoding style of log records.
-		Format() LogFormat
+	// Format returns the configured encoding style of log records.
+	Format() LogFormat
 
-		// Output returns the configured destination stream of log records.
-		Output() LogOutput
-	}
-)
+	// Output returns the configured destination stream of log records.
+	Output() LogOutput
+}
 
 const (
 	envLogLevel     = "LOG_LEVEL"
@@ -72,13 +64,11 @@ const (
 	defaultLogOutput = LogOutputStdout
 )
 
-type (
-	log struct {
-		level  LogLevel
-		format LogFormat
-		output LogOutput
-	}
-)
+type log struct {
+	level  LogLevel
+	format LogFormat
+	output LogOutput
+}
 
 func (l *log) Level() LogLevel {
 	return l.level
