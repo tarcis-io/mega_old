@@ -22,12 +22,6 @@ type (
 	}
 )
 
-func newLoader(lookup lookupFunc) *loader {
-	return &loader{
-		lookup: lookup,
-	}
-}
-
 func (l *loader) positiveDuration(envKey string, fallback time.Duration) time.Duration {
 	d := l.duration(envKey, fallback)
 	if d <= 0 {
