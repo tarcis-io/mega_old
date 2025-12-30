@@ -100,3 +100,109 @@ func match[T ~string](s string, allowed ...T) (T, bool) {
 	var zero T
 	return zero, false
 }
+
+//
+
+package config
+
+import (
+	"errors"
+	"fmt"
+	"strconv"
+	"strings"
+)
+
+type loader struct {
+	lookup func(string) (string, bool)
+	errs   []error
+}
+
+// fail records an error. 
+// Defensive: It works even if 'l' or 'l.errs' is nil/uninitialized.
+func (l *loader) fail(format string, args ...any) {
+	if l == nil {
+		return // Or panic, depending on how defensive you want to be about developer error
+	}
+	l.errs = append(l.errs, fmt.Errorf(format, args...))
+}
+
+// get is the defensive foundation.
+// 1. Checks for nil receiver.
+// 2. Checks for nil lookup function.
+// 3. Checks for empty keys.
+func (l *loader) get(key string) (string, bool) {
+	if l == nil || l.lookup == nil {
+		return "", false
+	}
+	if key == "" {
+		l.fail("coding error: attempted to load empty configuration key")
+		return "", false
+	}
+	
+	val, ok := l.lookup(key)
+	if !ok {
+		return "", false
+	}
+	return strings.TrimSpace(val), true
+}
+
+// mustStr (Required String)
+func (l *loader) mustStr(key string) string {
+	val, ok := l.get(key)
+	if !ok {
+		l.fail("missing required key: %s", key)
+		return ""
+	}
+	return val
+}
+
+// str (Optional String)
+func (l *loader) str(key, def string) string {
+	val, ok := l.get(key)
+	if !ok {
+		return def
+	}
+	return val
+}
+
+// int (Optional Int, but STRICT parsing)
+// Defensive Rule: If the variable IS present, it MUST be valid. 
+// Do not silently fallback to 'def' if the user provided garbage.
+func (l *loader) int(key string, def int) int {
+	valStr, ok := l.get(key)
+	if !ok {
+		return def
+	}
+
+	val, err := strconv.Atoi(valStr)
+	if err != nil {
+		// Defensive: Report the specific parsing error.
+		// We return 'def' to satisfy the type, but l.err() will be non-nil.
+		l.fail("env var %s='%s' is not a valid int: %v", key, valStr, err)
+		return def
+	}
+	return val
+}
+
+// bool (Optional Bool, but STRICT parsing)
+func (l *loader) bool(key string, def bool) bool {
+	valStr, ok := l.get(key)
+	if !ok {
+		return def
+	}
+
+	b, err := strconv.ParseBool(valStr)
+	if err != nil {
+		l.fail("env var %s='%s' is not a valid boolean: %v", key, valStr, err)
+		return def
+	}
+	return b
+}
+
+// err returns the accumulated errors
+func (l *loader) err() error {
+	if l == nil || len(l.errs) == 0 {
+		return nil
+	}
+	return errors.Join(l.errs...)
+}
